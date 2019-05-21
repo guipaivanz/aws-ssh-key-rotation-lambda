@@ -5,8 +5,8 @@ import os
 
 def sshKeysRotation(event, context):
     # Get AWS region
-    region_name = os.environ.get("AWS_REGION")
-    ssm_client = boto3.client('ssm', region_name=region_name)
+    get_region = boto3.client('ssm')
+    ssm_client = boto3.client('ssm', region_name=get_region.meta.region_name)
 
     # OS Users
     sshUsers = os.environ.get("ENV_USERS").split(",")
